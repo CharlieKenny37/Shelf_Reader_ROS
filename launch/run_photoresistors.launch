@@ -7,5 +7,5 @@
     <node name="photoresistor_publisher_4" pkg="rosserial_python" type="serial_node.py" args="/dev/ttyACM3" /> -->
 
     <!-- Launch the reader node-->
-    <node name="photoresistor_reader" pkg="photoresistor_test" type="photoresistor_reader" output="screen"/>
+    <node name="photoresistor_reader" pkg="shelf_test" type="photoresistor_reader" output="screen"/>
 </launch>

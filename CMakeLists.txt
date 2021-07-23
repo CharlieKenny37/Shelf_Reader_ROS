@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(photoresistor_test)
+project(shelf_test)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -134,6 +134,7 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/photoresistor_test_node.cpp)
 add_executable(photoresistor_reader src/photoresistor_reader_v2.cpp)
+add_executable(rfid_reader src/rfid_reader.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -145,12 +146,16 @@ add_executable(photoresistor_reader src/photoresistor_reader_v2.cpp)
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(photoresistor_reader ${photoresistor_reader_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(rfid_reader ${rfid_reader_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
 target_link_libraries(photoresistor_reader
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(rfid_reader
   ${catkin_LIBRARIES}
 )
 
