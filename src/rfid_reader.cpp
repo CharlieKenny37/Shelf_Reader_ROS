@@ -14,7 +14,7 @@ bool prevObjectStatus4[10];
 void readRfidMsg(std_msgs::ByteMultiArray msg, int board)
 {
     //Loop through all of the photoresistor data
-    for(int currentSensor = 0; currentSensor < msg.data.size(); currentSensor++)
+    for(int currentSensor = 0; currentSensor < msg.data.size() / 10; currentSensor++)
     {
         //Figure out if a tag has been detected
         bool nonZeroTag = false;
@@ -29,7 +29,7 @@ void readRfidMsg(std_msgs::ByteMultiArray msg, int board)
         {
             for(int currentByte = 0; currentByte < 10; currentByte++)
             {
-                tagID += (msg.data[currentSensor * 10 + currentByte] + " ");
+                tagID += (std::to_string(msg.data[currentSensor * 10 + currentByte]) + " ");
             }
         }
 
