@@ -20,7 +20,11 @@ void readRfidMsg(std_msgs::ByteMultiArray msg, int board)
         bool nonZeroTag = false;
         for(int currentByte = 0; currentByte < 10; currentByte++)
         {
-            nonZeroTag = msg.data[currentSensor * 10 + currentByte] != 0;
+            //stop checking if a non zero number was been found
+            if(!nonZeroTag)
+            {
+                nonZeroTag = msg.data[currentSensor * 10 + currentByte] != 0;
+            }
         }
 
         //Determine which tag was found
