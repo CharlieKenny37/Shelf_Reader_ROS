@@ -3,14 +3,14 @@
 #include <stdlib.h>
 
 //Determines how sensitive the photoresistors are
-#define LIGHT_TOLERANCE 200
+#define LIGHT_TOLERANCE 600
 
 bool prevObjectStatus1[10];
 bool prevObjectStatus2[10];
 bool prevObjectStatus3[10];
 bool prevObjectStatus4[10];
 
-bool initialized = false;
+bool initialized[4] = {false, false, false, false};
 
 unsigned int initialObjectState1[10];
 unsigned int initialObjectState2[10];
@@ -19,7 +19,7 @@ unsigned int initialObjectState4[10];
 
 void readPhotoresistorMsg(std_msgs::UInt32MultiArray msg, int board)
 {
-    if (initialized)
+    if (initialized[board - 1])
     {
         //Loop through all of the photoresistor data
         for (uint8_t currentSensor = 0; currentSensor < msg.data.size(); currentSensor++)
@@ -117,7 +117,7 @@ void readPhotoresistorMsg(std_msgs::UInt32MultiArray msg, int board)
         }
 
         //set initialized to true so main sensor loop can run
-        initialized = true;
+        initialized[board - 1] = true;
     }
 }
 
